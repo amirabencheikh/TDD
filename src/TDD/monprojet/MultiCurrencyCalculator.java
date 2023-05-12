@@ -5,13 +5,17 @@ import java.util.Map;
 
 
 
-
-
-
-
 public class MultiCurrencyCalculator {
 
     private Map<String, Currency> currencies = new HashMap<>();
+
+
+
+    public Map<String, Currency> getCurrencies() {
+
+        return currencies;
+
+    }
 
 
 
@@ -35,7 +39,7 @@ public class MultiCurrencyCalculator {
 
         Currency toCurrency = currencies.get(toCurrencyCode);
 
-        double exchangeRate = toCurrency.getExchangeRate() / fromCurrency.getExchangeRate();
+        double exchangeRate = fromCurrency.getExchangeRate() / toCurrency.getExchangeRate();
 
         return amount * exchangeRate;
 
@@ -43,9 +47,4 @@ public class MultiCurrencyCalculator {
 
 
 
-    public Map<String, Currency> getCurrencies() {
-
-        return currencies;
-
-    }
 }

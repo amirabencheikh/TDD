@@ -5,29 +5,23 @@ package TDD.monprojet.test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 import org.junit.Test;
 
 import TDD.monprojet.Currency;
 
 import TDD.monprojet.MultiCurrencyCalculator;
 
-
-
-import static org.junit.Assert.assertEquals;
-
-
-
-import org.junit.Before;
-
-
-
 public class MultiCurrencyCalculatorTest {
-
-
 
     private MultiCurrencyCalculator calculator;
 
     private Currency usdCurrency;
+
+    private Currency eurCurrency;
+
+
 
     @Before
 
@@ -37,7 +31,7 @@ public class MultiCurrencyCalculatorTest {
 
         usdCurrency = new Currency("USD", 1.0);
 
-        new Currency("EUR", 0.85);
+        eurCurrency = new Currency("EUR", 0.85);
 
     }
 
@@ -55,6 +49,29 @@ public class MultiCurrencyCalculatorTest {
 
     }
 
+
+    @Test
+
+    public void testConvertCurrency() {
+
+        calculator.addCurrency(usdCurrency);
+
+        calculator.addCurrency(eurCurrency);
+
+        assertEquals(85.0, calculator.convertCurrency("EUR", "USD", 100.0), 0.001);
+
+        assertEquals(117.64705882352942, calculator.convertCurrency("USD", "EUR", 100.0), 0.001);
+
+
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+
+    public void testConvertCurrencyWithUnknownCurrency() {
+
+        calculator.convertCurrency("JPY", "USD", 100.0);
+
+    }
+
 }
-
-

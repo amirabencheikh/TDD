@@ -13,17 +13,9 @@ import org.junit.Test;
  */
 import static org.junit.Assert.assertEquals;
 
-
-
-
-
 import TDD.monprojet.Currency;
 
-
-
 public class CurrencyTest {
-
-
 
     @Test
 
